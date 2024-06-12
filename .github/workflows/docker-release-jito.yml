@@ -19,6 +19,8 @@ jobs:
           submodules: 'recursive'
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker # can't build multi-platform, but we can use FROM with local images
       - name: Build Jito-solana
         run: |
           set -x
