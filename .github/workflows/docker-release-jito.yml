@@ -23,7 +23,9 @@ jobs:
         run: |
           set -x
           CI="" ./sdk/docker-solana/build.sh
-          docker tag solanalabs/solana:${{ github.ref_name }} docker-solana:${{ github.ref_name }}
+          docker tag solanalabs/solana:"${CI_TAG}" docker-solana:"${CI_TAG}"
+        env:
+          CI_TAG: ${{ github.ref_name }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Docker login
