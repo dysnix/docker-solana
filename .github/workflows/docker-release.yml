@@ -2,7 +2,7 @@ name: Release docker image
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+\-geyser\-jito\-plugin'
 
 jobs:
   docker:
@@ -29,7 +29,6 @@ jobs:
             ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=${{ github.ref_name }}
-            type=raw,value=latest
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -40,7 +39,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: ${{ github.event.repository.name }} ${{ github.ref_name }}
-          makeLatest: true
+          makeLatest: false
           generateReleaseNotes: true
           body: |
             ## Docker images
