@@ -1,4 +1,4 @@
-FROM rust:1.73-bullseye as jitobuild
+FROM rust:1.75-bullseye as jitobuild
 # keep rust version in sync to avoid re-downloading rust
 # use https://github.com/solana-labs/solana/blob/db9fdf5811ecd8a84ea446591854974d386681ef/ci/rust-version.sh#L21
 
@@ -27,12 +27,12 @@ RUN curl -OL https://github.com/google/protobuf/releases/download/v$PROTOC_VERSI
  && unzip -o $PROTOC_ZIP -d /usr/local include/* \
  && rm -f $PROTOC_ZIP
 WORKDIR /
-RUN git clone --depth=1 --branch v1.17.20 https://github.com/jito-foundation/geyser-grpc-plugin.git
+RUN git clone --depth=1 --branch v1.18.1 https://github.com/jito-foundation/geyser-grpc-plugin.git
 WORKDIR /geyser-grpc-plugin
 
 
 ARG ci_commit
-ENV CI_COMMIT=v1.17.20
+ENV CI_COMMIT=v1.18.1
 
 ARG features
 
@@ -44,8 +44,7 @@ RUN if [ -z "$features" ] ; then \
       cargo build --release --features "$features"; \
     fi
 
-
-FROM solanalabs/solana:v1.17.34
+FROM solanalabs/solana:v1.18.15
 
 ENV DEBIAN_FRONTEND noninteractive
 
