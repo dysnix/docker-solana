@@ -22,7 +22,7 @@ jobs:
       id: upstream
       with:
         releases-only: true
-        regex: v1\.17\.[0-9]+$
+        regex: v1\.18\.[0-9]+$
         repository: solana-labs/solana
 
     - name: Get local tags
@@ -30,7 +30,7 @@ jobs:
       id: latest
       with:
         compared-to-tag: ${{ steps.upstream.outputs.tag }}
-        regex: v1\.17\.[0-9]+$
+        regex: v1\.18\.[0-9]+$
         repository: ${{ github.repository }}
 
     - name: Update Dockerfile base
