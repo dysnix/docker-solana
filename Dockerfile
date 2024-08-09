@@ -1,4 +1,4 @@
-FROM solanalabs/solana:v1.18.21
+FROM solanalabs/solana:v1.18.22
 
 ENV DEBIAN_FRONTEND noninteractive
 
